@@ -1,0 +1,111 @@
+export interface User {
+  id: string;
+  fullName: string;
+  email: string;
+  avatar: string | null;
+  authProvider: "local" | "google" | "apple";
+  emailVerified?: boolean;
+  profile?: {
+    country?: string;
+    timezone?: string;
+    experienceLevel?: "beginner" | "intermediate" | "advanced" | "professional";
+    tradingStyle?:
+      | "scalping"
+      | "day_trading"
+      | "swing_trading"
+      | "position_trading";
+    instruments?: string[];
+    biggestChallenges?: string[];
+  };
+  preferences?: {
+    theme?: "light" | "dark" | "system";
+    preferredCurrency?: string;
+    reportingCurrency?: string;
+    weekStartsOn?: "sunday" | "monday";
+    notifications?: {
+      enabled?: boolean;
+      reminderTime?: string;
+      pushToken?: string | null;
+    };
+  };
+  subscription?: {
+    plan?: "free" | "pro" | "super";
+    status?:
+      | "free"
+      | "pending"
+      | "trial"
+      | "active"
+      | "non-renewing"
+      | "past-due"
+      | "expired"
+      | "cancelled";
+    startedAt?: string;
+    expiresAt?: string;
+    trialEndsAt?: string;
+  };
+  entitlements?: {
+    aiTrial?: {
+      status?: "available" | "active" | "expired";
+      used?: boolean;
+      startedAt?: string;
+      expiresAt?: string;
+    };
+  };
+  stats?: {
+    currentJournalStreak?: number;
+    longestJournalStreak?: number;
+    totalTrades?: number;
+    totalJournals?: number;
+  };
+  onboarding?: {
+    completed?: boolean;
+    currentStep?: number;
+    completedAt?: string;
+  };
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface RegisterData {
+  fullName: string;
+  email: string;
+  password: string;
+}
+
+export interface LoginData {
+  email: string;
+  password: string;
+}
+
+export interface AuthResponse {
+  message: string;
+  user: User;
+  token: string;
+  verificationSent?: boolean;
+}
+
+export interface LoginResponse {
+  user: User;
+  message: string;
+  token: string;
+}
+
+export interface UpdatePreferencesPayload {
+  theme?: "light" | "dark" | "system";
+  preferredCurrency?: string;
+  reportingCurrency?: string;
+  weekStartsOn?: "sunday" | "monday";
+  notificationsEnabled?: boolean;
+  reminderTime?: string;
+  fullName?: string;
+  country?: string;
+  timezone?: string;
+  experienceLevel?: "beginner" | "intermediate" | "advanced" | "professional";
+  tradingStyle?:
+    | "scalping"
+    | "day_trading"
+    | "swing_trading"
+    | "position_trading";
+  instruments?: string[];
+  biggestChallenges?: string[];
+}
